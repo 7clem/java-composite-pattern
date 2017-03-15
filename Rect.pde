@@ -1,20 +1,12 @@
-class Rect extends Abstract {
+class Rect extends AbstractShape {
   
-  Rect() {
-    super();
+  Rect(float x, float y, float da) {
+    super(x, y, da);
   }
   
-  PVector pos() {
-     return new PVector(pos.x, pos.y); 
-  }
-  
-  void show() {
+  protected void specificShow() {
     rectMode(CENTER);
-    rect(pos.x, pos.y, r, r);
+    fill(0, 100, 255);
+    rect(0, 0, r, r);
   }
-  
-  void add(Abstract a) {
-    println("Cannot add subshapes to a Rect object.");
-  }
-  
 }

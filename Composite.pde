@@ -1,33 +1,36 @@
-class Composite extends Abstract {
-  ArrayList<Abstract> aggreg;
-  float rot;
+class CompositeShape extends AbstractShape {
+  ArrayList<AbstractShape> shapes ;
   
-  Composite() {
-    super();
-    aggreg = new ArrayList<Abstract>();
-    pos = pos == null ? new PVector() : pos;
-    this.rot = rot;
+  CompositeShape(float x, float y, float da) {
+    super(x, y, da);
+    shapes  = new ArrayList<AbstractShape>();
   }
   
-  void add(Abstract a) {
-     aggreg.add(a);
+  void add(AbstractShape a) {
+     shapes .add(a);
   }
   
   PVector pos() {
     PVector pv = new PVector();
-    for (Abstract ab : aggreg) {
+    for (AbstractShape ab : shapes ) {
        pv.add(ab.pos()); 
     }
     return pv;
   }
   
-  void show() {
-    rotate(rot);
-    translate(pos.x, pos.y);
-    for (Abstract a : aggreg) {
+  protected void specificShow() {
+    pushMatrix();
+    rotate(angle);
+    for (AbstractShape a : shapes ) {
        a.show(); 
     }
-    
-    
+    popMatrix();
+  }
+  
+  void update() {
+    this.angle += deltaAngle;
+     for (AbstractShape a : shapes ) {
+       a.update(); 
+    }
   }
 } // end Composite

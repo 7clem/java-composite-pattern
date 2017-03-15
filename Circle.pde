@@ -1,20 +1,13 @@
-class Circle extends Abstract {
+class Circle extends AbstractShape {
   float r = 10;
   
-  Circle() {
-    super();
+  Circle(float x, float y, float da) {
+    super(x, y, da);
   }
   
-  PVector pos() {
-     return new PVector(pos.x, pos.y); 
-  }
-  
-  void show() {
-    ellipse(pos.x, pos.y, 2*r, 2*r);
-  }
-  
-  void add(Abstract a) {
-    println("Cannot add to a leaf object.");
+  protected void specificShow() {
+    fill(100, 255, 0);
+    ellipse(0, 0 , r, 2*r);
   }
   
 }
